@@ -1,4 +1,12 @@
-import { editFile, getBg, getColor, isBuild, untilUpdated } from 'testUtils'
+import {
+  editFile,
+  getBg,
+  getColor,
+  hasErrorOverlay,
+  isBuild,
+  removeFile,
+  untilUpdated
+} from 'testUtils'
 
 test('should render', async () => {
   expect(await page.textContent('h1')).toMatch('Vue SFCs')
@@ -132,6 +140,12 @@ describe('hmr', () => {
       code.replace('let foo: number = 0', 'let foo: number = 100')
     )
     await untilUpdated(() => page.textContent('.hmr-inc'), 'count is 100')
+  })
+
+  test('should error when file not exist', async () => {
+    expect(await page.textContent('.extra')).toMatch('extra')
+    await removeFile('Extra.vue')
+    expect(hasErrorOverlay()).toBeTruthy()
   })
 })
 

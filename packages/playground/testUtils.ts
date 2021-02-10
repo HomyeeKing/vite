@@ -7,6 +7,7 @@ import path from 'path'
 import slash from 'slash'
 import colors from 'css-color-names'
 import { ElementHandle } from 'playwright-chromium'
+import { overlayId } from '../vite/src/client/overlay'
 
 export const isBuild = !!process.env.VITE_TEST_BUILD
 
@@ -113,4 +114,8 @@ export async function untilUpdated(
       await timeout(50)
     }
   }
+}
+
+export function hasErrorOverlay() {
+  return document.querySelectorAll(overlayId).length
 }

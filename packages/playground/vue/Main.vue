@@ -9,10 +9,12 @@
   <Assets />
   <CustomBlock />
   <SrcImport />
+  <Extra/>
 </template>
 
 <script setup lang="ts">
 import Hmr from './Hmr.vue'
+import Extra from './Extra.vue'
 import Syntax from './Syntax.vue'
 import PreProcessors from './PreProcessors.vue'
 import CssModules from './CssModules.vue'
